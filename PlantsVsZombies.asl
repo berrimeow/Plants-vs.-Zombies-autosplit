@@ -1,5 +1,5 @@
 // Plants vs. Zombies (PC) autosplitter by ymblcza and berrimeow
-// updated 2025-12-14
+// updated 2025-12-15
 // 1.0.7.3556 and GOTY 1.2.0.1093 unsupported but planned to be added
 
 state("PlantsVsZombies", "GOTY (1.2.0.1096 en)"){
@@ -22,7 +22,47 @@ state("PlantsVsZombies", "GOTY (1.2.0.1096 en)"){
 	int spikeUpgrade: 0x331c50, 0x94c, 0x204;		// binary and tied to userdata, 1 when Spikerock has been unlocked
 }
 
+state("popcapgame1", "GOTY (1.2.0.1096 en)"){
+	int uptime: "nvspcap.dll", 0xf6c50;
+	int UI: 0x331c50, 0x91c;
+	int BGM: 0x331c50, 0x95c, 0x8;
+	int levelID: 0x331c50, 0x918;
+	int advLevel: 0x331c50, 0x94c, 0x50;
+	int advWins: 0x331c50, 0x94c, 0x58;
+	int IGT: 0x331c50, 0x868, 0x5584;
+	int IGTnoSeedSelect: 0x331c50, 0x868, 0x5580;
+	int sun: 0x331c50, 0x868, 0x5578;
+	int wave: 0x331c50, 0x868, 0x5594;
+	int waveAutoscroll: 0x331c50, 0x868, 0x55b4;
+	int fadeout: 0x331c50, 0x868, 0x5618;
+	int streak: 0x331c50, 0x868, 0x178, 0x6c;
+	int streakTimer: 0x331c50, 0x868, 0x561c;
+	int imiUpgrade: 0x331c50, 0x94c, 0x20c;
+	int cobUpgrade: 0x331c50, 0x94c, 0x208;
+	int spikeUpgrade: 0x331c50, 0x94c, 0x204;
+}
+
 state("PlantsVsZombies", "GOTY (1.2.0.1073 en)"){
+	int uptime: "nvspcap.dll", 0xf6c50;
+	int UI: 0x329670, 0x91c;
+	int BGM: 0x329670, 0x95c, 0x8;
+	int levelID: 0x329670, 0x918;
+	int advLevel: 0x329670, 0x94c, 0x4c;
+	int advWins: 0x329670, 0x94c, 0x54;
+	int IGT: 0x329670, 0x868, 0x5584;
+	int IGTnoSeedSelect: 0x329670, 0x868, 0x5580;
+	int sun: 0x329670, 0x868, 0x5578;
+	int wave: 0x329670, 0x868, 0x5594;
+	int waveAutoscroll: 0x329670, 0x868, 0x55b4;
+	int fadeout: 0x329670, 0x868, 0x5618;
+	int streak: 0x329670, 0x868, 0x178, 0x6c;
+	int streakTimer: 0x329670, 0x868, 0x561c;
+	int imiUpgrade: 0x329670, 0x94c, 0x208;
+	int cobUpgrade: 0x329670, 0x94c, 0x204;
+	int spikeUpgrade: 0x329670, 0x94c, 0x200;
+}
+
+state("popcapgame1", "GOTY (1.2.0.1073 en)"){
 	int uptime: "nvspcap.dll", 0xf6c50;
 	int UI: 0x329670, 0x91c;
 	int BGM: 0x329670, 0x95c, 0x8;
@@ -62,6 +102,26 @@ state("PlantsVsZombies", "1.0.7.3467 ru"){
 	int spikeUpgrade: 0x2b9ff0, 0x82c, 0x1d8;
 }
 
+state("popcapgame1", "1.0.7.3467 ru"){
+	int uptime: "nvspcap.dll", 0xf6c50;
+	int UI: 0x2b9ff0, 0x7fc;
+	int BGM: 0x2b9ff0, 0x83c, 0x8;
+	int levelID: 0x2b9ff0, 0x7f8;
+	int advLevel: 0x2b9ff0, 0x82c, 0x24;
+	int advWins: 0x2b9ff0, 0x82c, 0x2c;
+	int IGT: 0x2b9ff0, 0x768, 0x556c;
+	int IGTnoSeedSelect: 0x2b9ff0, 0x768, 0x5568;
+	int sun: 0x2b9ff0, 0x768, 0x5560;
+	int wave: 0x2b9ff0, 0x768, 0x557c;
+	int waveAutoscroll: 0x2b9ff0, 0x768, 0x559c;
+	int fadeout: 0x2b9ff0, 0x768, 0x5600;
+	int streak: 0x2b9ff0, 0x768, 0x160, 0x6c;
+	int streakTimer: 0x2b9ff0, 0x768, 0x5604;
+	int imiUpgrade: 0x2b9ff0, 0x82c, 0x1e0;
+	int cobUpgrade: 0x2b9ff0, 0x82c, 0x1dc;
+	int spikeUpgrade: 0x2b9ff0, 0x82c, 0x1d8;
+}
+
 state("PlantsVsZombies", "1.0.4.7924 international"){
 	int uptime: "nvspcap.dll", 0xf6c50;
 	int UI: 0x2ba058, 0x7fc;
@@ -82,7 +142,47 @@ state("PlantsVsZombies", "1.0.4.7924 international"){
 	int spikeUpgrade: 0x2ba058, 0x82c, 0x1d8;
 }
 
+state("popcapgame1", "1.0.4.7924 international"){
+	int uptime: "nvspcap.dll", 0xf6c50;
+	int UI: 0x2ba058, 0x7fc;
+	int BGM: 0x2ba058, 0x83c, 0x8;
+	int levelID: 0x2ba058, 0x7f8;
+	int advLevel: 0x2ba058, 0x82c, 0x24;
+	int advWins: 0x2ba058, 0x82c, 0x2c;
+	int IGT: 0x2ba058, 0x768, 0x556c;
+	int IGTnoSeedSelect: 0x2ba058, 0x768, 0x5568;
+	int sun: 0x2ba058, 0x768, 0x5560;
+	int wave: 0x2ba058, 0x768, 0x557c;
+	int waveAutoscroll: 0x2ba058, 0x768, 0x559c;
+	int fadeout: 0x2ba058, 0x768, 0x5600;
+	int streak: 0x2ba058, 0x768, 0x160, 0x6c;
+	int streakTimer: 0x2ba058, 0x768, 0x5604;
+	int imiUpgrade: 0x2ba058, 0x82c, 0x1e0;
+	int cobUpgrade: 0x2ba058, 0x82c, 0x1dc;
+	int spikeUpgrade: 0x2ba058, 0x82c, 0x1d8;
+}
+
 state("PlantsVsZombies", "1.0.0.1051 / 1.2.0.1065 en"){
+	int uptime: "nvspcap.dll", 0xf6c50;
+	int UI: 0x2a9ec0, 0x7fc;
+	int BGM: 0x2a9ec0, 0x83c, 0x8;
+	int levelID: 0x2a9ec0, 0x7f8;
+	int advLevel: 0x2a9ec0, 0x82c, 0x24;
+	int advWins: 0x2a9ec0, 0x82c, 0x2c;
+	int IGT: 0x2a9ec0, 0x768, 0x556c;
+	int IGTnoSeedSelect: 0x2a9ec0, 0x768, 0x5568;
+	int sun: 0x2a9ec0, 0x768, 0x5560;
+	int wave: 0x2a9ec0, 0x768, 0x557c;
+	int waveAutoscroll: 0x2a9ec0, 0x768, 0x559c;
+	int fadeout: 0x2a9ec0, 0x768, 0x5600;
+	int streak: 0x2a9ec0, 0x768, 0x160, 0x6c;
+	int streakTimer: 0x2a9ec0, 0x768, 0x5604;
+	int imiUpgrade: 0x2a9ec0, 0x82c, 0x1e0;
+	int cobUpgrade: 0x2a9ec0, 0x82c, 0x1dc;
+	int spikeUpgrade: 0x2a9ec0, 0x82c, 0x1d8;
+}
+
+state("popcapgame1", "1.0.0.1051 / 1.2.0.1065 en"){
 	int uptime: "nvspcap.dll", 0xf6c50;
 	int UI: 0x2a9ec0, 0x7fc;
 	int BGM: 0x2a9ec0, 0x83c, 0x8;
@@ -129,6 +229,7 @@ startup{
 	vars.name_puzzle = new List<string>{"Vasebreaker","To the Left","Third Vase","Chain Reaction","M is for Metal","Scary Potter","Hokey Pokey","Another Chain Reaction","Ace of Vase","Vasebreaker Endless","I, Zombie","I, Zombie Too","Can You Dig It?","Totally Nuts","Dead Zeppelin","Me Smash!","ZomBoogie","Three Hit Wonder","All your brainz r belong to us","I, Zombie Endless"};
 	settings.Add("game_time", true, "Ask if Game Time should be used on opening the game");
 	settings.Add("puzzles_start", true, "All Puzzles (select a starting split)");
+	settings.Add("adventure_il", true, "Start on any Adventure level (IL practice)");
 	settings.Add("puzzles_reset", false, "Reset on restarting the first puzzle (All Puzzles)");
 	settings.Add("seed", false, "Split after seed selection");
 	settings.Add("flag", false, "Split every flag (standard levels)");
@@ -161,9 +262,11 @@ startup{
 }
 
 start{
-	if (current.advWins == 0 && current.levelID == 0 && current.advLevel == 1 && current.sun == 50 && old.sun == 150)													// Any% and 100%
+	if (current.advWins == 0 && current.levelID == 0 && current.advLevel == 1 && current.sun == 50 && old.sun == 150)													// Any% and 100% start
 		return true;
 	else if (current.IGT >= 1 && current.IGT <= 25){
+		if (settings["adventure_il"] && current.levelID == 0 && current.advLevel > 1)															// Any%, 100%, and NG+ (ILs practice)
+			return true;
 		if ((current.levelID >= 1 && current.levelID <= 49 || vars.level_endless.Contains(current.levelID)) && !vars.level_unbeatable.Contains(current.levelID))		// All Mini-games, All Survivals, Endless levels
 			return true;
 		for (int i = 51; i <= 59; ++i)
@@ -171,11 +274,11 @@ start{
 				return true;
 	}
 	if (settings["legacy"]){
-		if (current.advWins >= 1 && current.levelID == 0 && current.advLevel == 1 && current.IGT >= 1 && current.IGT <= 25)												// NG+ (legacy)
+		if (current.advWins >= 1 && current.levelID == 0 && current.advLevel == 1 && current.IGT >= 1 && current.IGT <= 25)												// NG+ start (legacy)
 			return true;
 	}
 	else {
-		if (current.advWins >= 1 && current.levelID == 0 && current.advLevel == 1 && current.UI == 2 && current.BGM == 6 && old.BGM == 7)								// NG+
+		if (current.advWins >= 1 && current.levelID == 0 && current.advLevel == 1 && current.UI == 2 && current.BGM == 6 && old.BGM == 7)								// NG+ start
 			return true;
 	}
 }
@@ -183,7 +286,7 @@ start{
 split{
 	if (settings["seed"] && (current.UI == 3 && old.UI == 2 && old.IGTnoSeedSelect == 0 && current.IGTnoSeedSelect > 0) && (vars.level_seed_select.Contains(current.levelID) || (current.advWins == 0 && current.levelID == 0 && vars.anyp_seed_select.Contains(current.advLevel)) || (current.advWins >= 1 && current.levelID == 0 && vars.ngplus_seed_select.Contains(current.advLevel)))) // starting a level after seed selection
 		return true;
-	if (settings["flag"] && (current.uptime > old.uptime && current.UI == 3 && (current.levelID == 0 || current.levelID >= 16 && current.levelID <= 49) && current.wave % 10 == 0 && old.wave % 10 != 0)) 		// every flag (standard levels)
+	if (settings["flag"] && (current.uptime > old.uptime && current.UI == 3 && (current.levelID == 0 || current.levelID >= 16 && current.levelID <= 49) && current.wave % 10 == 0 && old.wave % 10 != 0)) 				// every flag (standard levels)
 		return true;
 	if (settings["imitater"] && current.uptime > old.uptime && current.imiUpgrade == 1 && old.imiUpgrade == 0)																											// buying Imitater (100%)
 		return true;
@@ -206,7 +309,9 @@ split{
 			return true;
 			}
 	else {
-		if (current.fadeout >= 550 && current.fadeout <= 600 && old.fadeout < 550)																										// completing a level
+		if (current.levelID == 0 && current.advLevel % 10 == 9 && current.fadeout >= 450 && current.fadeout <= 500 && old.fadeout < 450)												// completing a level (Adventure x-9, 5s fadeout)
+			return true;
+		else if (current.fadeout >= 550 && current.fadeout <= 600 && old.fadeout < 550)																									// completing a level
 			return true;
 		if (settings["4-5"] && current.levelID == 0 && current.advLevel == 35 && current.streakTimer <= 500 && current.streakTimer >= 450 && old.streakTimer < 450)						// passing a round on Level 4-5
 			return true;
