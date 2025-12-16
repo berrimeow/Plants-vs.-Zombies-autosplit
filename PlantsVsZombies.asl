@@ -3,7 +3,7 @@
 // 1.0.7.3556 and GOTY 1.2.0.1093 unsupported but planned to be added
 
 state("PlantsVsZombies", "GOTY (1.2.0.1096 en)"){
-	int uptime: "nvspcap.dll", 0xf6c50;				// should consistently increase by 100 per second (Plants vs. Zombies's FPS) while the game is open
+	int uptime: 0x331c50, 0x320, 0x38;				// should consistently increase by 100 per second (Plants vs. Zombies's FPS) while the game is open
 	int UI: 0x331c50, 0x91c;						// game UI (1 = main menu, 2 = seed select, 3 = ingame, 5 = prize earned, 7 = level select)
 	int BGM: 0x331c50, 0x95c, 0x8;					// 1 to 12 (6 = Choose Your Seeds, 7 = Crazy Dave)
 	int levelID: 0x331c50, 0x918;					// 0 = Adventure, 1 to 15 = Survivals, 16 to 35 = Mini-games, 51 to 70 = Puzzles, others = secret / unbeatable levels
@@ -23,7 +23,7 @@ state("PlantsVsZombies", "GOTY (1.2.0.1096 en)"){
 }
 
 state("popcapgame1", "GOTY (1.2.0.1096 en)"){
-	int uptime: "nvspcap.dll", 0xf6c50;
+	int uptime: 0x331c50, 0x320, 0x38;
 	int UI: 0x331c50, 0x91c;
 	int BGM: 0x331c50, 0x95c, 0x8;
 	int levelID: 0x331c50, 0x918;
@@ -43,7 +43,7 @@ state("popcapgame1", "GOTY (1.2.0.1096 en)"){
 }
 
 state("PlantsVsZombies", "GOTY (1.2.0.1073 en)"){
-	int uptime: "nvspcap.dll", 0xf6c50;
+	int uptime: 0x329670, 0x320, 0x38;
 	int UI: 0x329670, 0x91c;
 	int BGM: 0x329670, 0x95c, 0x8;
 	int levelID: 0x329670, 0x918;
@@ -63,7 +63,7 @@ state("PlantsVsZombies", "GOTY (1.2.0.1073 en)"){
 }
 
 state("popcapgame1", "GOTY (1.2.0.1073 en)"){
-	int uptime: "nvspcap.dll", 0xf6c50;
+	int uptime: 0x329670, 0x320, 0x38;
 	int UI: 0x329670, 0x91c;
 	int BGM: 0x329670, 0x95c, 0x8;
 	int levelID: 0x329670, 0x918;
@@ -83,7 +83,7 @@ state("popcapgame1", "GOTY (1.2.0.1073 en)"){
 }
 
 state("PlantsVsZombies", "1.0.7.3467 ru"){
-	int uptime: "nvspcap.dll", 0xf6c50;
+	int uptime: 0x2b9ff0, 0x320, 0x28;
 	int UI: 0x2b9ff0, 0x7fc;
 	int BGM: 0x2b9ff0, 0x83c, 0x8;
 	int levelID: 0x2b9ff0, 0x7f8;
@@ -103,7 +103,7 @@ state("PlantsVsZombies", "1.0.7.3467 ru"){
 }
 
 state("popcapgame1", "1.0.7.3467 ru"){
-	int uptime: "nvspcap.dll", 0xf6c50;
+	int uptime: 0x2b9ff0, 0x320, 0x28;
 	int UI: 0x2b9ff0, 0x7fc;
 	int BGM: 0x2b9ff0, 0x83c, 0x8;
 	int levelID: 0x2b9ff0, 0x7f8;
@@ -123,7 +123,7 @@ state("popcapgame1", "1.0.7.3467 ru"){
 }
 
 state("PlantsVsZombies", "1.0.4.7924 international"){
-	int uptime: "nvspcap.dll", 0xf6c50;
+	int uptime: 0x2ba058, 0x320, 0x28;
 	int UI: 0x2ba058, 0x7fc;
 	int BGM: 0x2ba058, 0x83c, 0x8;
 	int levelID: 0x2ba058, 0x7f8;
@@ -143,7 +143,7 @@ state("PlantsVsZombies", "1.0.4.7924 international"){
 }
 
 state("popcapgame1", "1.0.4.7924 international"){
-	int uptime: "nvspcap.dll", 0xf6c50;
+	int uptime: 0x2ba058, 0x320, 0x28;
 	int UI: 0x2ba058, 0x7fc;
 	int BGM: 0x2ba058, 0x83c, 0x8;
 	int levelID: 0x2ba058, 0x7f8;
@@ -163,7 +163,7 @@ state("popcapgame1", "1.0.4.7924 international"){
 }
 
 state("PlantsVsZombies", "1.0.0.1051 / 1.2.0.1065 en"){
-	int uptime: "nvspcap.dll", 0xf6c50;
+	int uptime: 0x2a9ec0, 0x320, 0x28;
 	int UI: 0x2a9ec0, 0x7fc;
 	int BGM: 0x2a9ec0, 0x83c, 0x8;
 	int levelID: 0x2a9ec0, 0x7f8;
@@ -183,7 +183,7 @@ state("PlantsVsZombies", "1.0.0.1051 / 1.2.0.1065 en"){
 }
 
 state("popcapgame1", "1.0.0.1051 / 1.2.0.1065 en"){
-	int uptime: "nvspcap.dll", 0xf6c50;
+	int uptime: 0x2a9ec0, 0x320, 0x28;
 	int UI: 0x2a9ec0, 0x7fc;
 	int BGM: 0x2a9ec0, 0x83c, 0x8;
 	int levelID: 0x2a9ec0, 0x7f8;
