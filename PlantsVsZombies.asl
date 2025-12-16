@@ -1,5 +1,5 @@
 // Plants vs. Zombies (PC) autosplitter by ymblcza and berrimeow
-// updated 2025-12-15
+// updated 2025-12-16
 // 1.0.7.3556 and GOTY 1.2.0.1093 unsupported but planned to be added
 
 state("PlantsVsZombies", "GOTY (1.2.0.1096 en)"){
@@ -227,7 +227,6 @@ init{
 
 startup{
 	vars.name_puzzle = new List<string>{"Vasebreaker","To the Left","Third Vase","Chain Reaction","M is for Metal","Scary Potter","Hokey Pokey","Another Chain Reaction","Ace of Vase","Vasebreaker Endless","I, Zombie","I, Zombie Too","Can You Dig It?","Totally Nuts","Dead Zeppelin","Me Smash!","ZomBoogie","Three Hit Wonder","All your brainz r belong to us","I, Zombie Endless"};
-	settings.Add("game_time", true, "Ask if Game Time should be used on opening the game");
 	settings.Add("puzzles_start", true, "All Puzzles (select a starting split)");
 	settings.Add("adventure_il", true, "Start on any Adventure level (IL practice)");
 	settings.Add("puzzles_reset", false, "Reset on restarting the first puzzle (All Puzzles)");
@@ -247,7 +246,7 @@ startup{
 	for (int i = 61; i <= 69; ++i)
 		settings.Add("puzzles_start"+i.ToString(),false,vars.name_puzzle[i-51], "puzzles_start");
 
-	if (timer.CurrentTimingMethod == TimingMethod.RealTime && settings["game_time"])
+	if (timer.CurrentTimingMethod == TimingMethod.RealTime)
     {        
         var timingMessage = MessageBox.Show (
             "LiveSplit has a load remover for this game when comparing against Game Time. Would you like to set the timing method to Game Time instead of Real Time?",
@@ -328,7 +327,7 @@ split{
 
 reset{
 	for (int i = 51; i <= 59; ++i)
-		if (settings["puzzles_reset"] && current.UI != 7 && current.IGT < old.IGT && current.fadeout < 0 && (settings["puzzles_start" + i.ToString()] && current.levelID == i || settings["puzzles_start" + (i + 10).ToString()] && current.levelID == i + 10))
+		if (settings["puzzles_reset"] && current.UI != 7 && current.IGT < old.IGT && current.fadeout < 0 && (settings["puzzles_start" + i.ToString()] && current.levelID == i || settings["puzzles_start" + (i + 10).ToString()] && current.levelID == i + 10))		// restarting the first split in All Puzzles
 			return true;
 }
 
