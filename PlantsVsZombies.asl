@@ -1,5 +1,5 @@
 // Plants vs. Zombies (PC) autosplitter by ymblcza and berrimeow
-// updated 2025-12-16
+// updated 2025-12-17
 // 1.0.7.3556 and GOTY 1.2.0.1093 unsupported but planned to be added
 
 state("PlantsVsZombies", "GOTY (1.2.0.1096 en)"){
@@ -205,6 +205,7 @@ state("popcapgame1", "1.0.0.1051 / 1.2.0.1065 en"){
 init{
 	vars.level_seed_select = new List<int>(){1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 22, 28, 29, 31, 32, 34, 36, 37, 38, 39, 40, 41, 44, 45};													// Mini-games and Survival levels that have seed selection
 	vars.anyp_seed_select = new List<int>(){8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 31, 32, 33, 34, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48, 49};								// Any% levels that have seed selection
+	vars.anyp_shop = new List<int>(){25, 35, 42, };
 	vars.ngplus_seed_select = new List<int>(){1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 31, 32, 33, 34, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48, 49}; 			// NG+ levels that have seed selection
 	vars.level_endless = new List<int>(){11, 12, 13, 14, 15, 60, 70};																																			// endless levels
 	vars.level_unbeatable = new List<int>(){42, 43, 50, 71, 72};																																				// levels that can't be completed
@@ -245,19 +246,6 @@ startup{
 		settings.Add("puzzles_start"+i.ToString(),false,vars.name_puzzle[i-51], "puzzles_start");
 	for (int i = 61; i <= 69; ++i)
 		settings.Add("puzzles_start"+i.ToString(),false,vars.name_puzzle[i-51], "puzzles_start");
-
-	if (timer.CurrentTimingMethod == TimingMethod.RealTime)
-    {        
-        var timingMessage = MessageBox.Show (
-            "LiveSplit has a load remover for this game when comparing against Game Time. Would you like to set the timing method to Game Time instead of Real Time?",
-            "LiveSplit | Plants vs. Zombies",
-            MessageBoxButtons.YesNo,MessageBoxIcon.Question
-        );
-
-        if (timingMessage == DialogResult.Yes){
-            timer.CurrentTimingMethod = TimingMethod.GameTime;
-        }
-	}
 }
 
 start{
@@ -294,8 +282,15 @@ split{
 	if (settings["spikerock"] && current.uptime > old.uptime && current.spikeUpgrade == 1 && old.spikeUpgrade == 0)																										// buying Cob Cannon (100%)
 		return true;
 	else if (settings["legacy"]){
-		if (current.fadeout == 0 && old.fadeout > 0) 																																	// completing a level (legacy)
-			return true;
+		if (current.advWins == 0 && current.advLevel == 45)																																// completing Level 5-4 in Any% (legacy, failsafe for entering Zen Garden too quickly)
+			if (current.UI == 5 && old.UI == 3 || current.UI == 3 && old.UI == 3 && current.levelID == 43 && old.levelID == 0) 
+				return true;
+		if (current.advWins != 0 || current.advLevel != 45)
+			if (current.advLevel > old.advLevel)																																		// completing an Adventure level (legacy)
+				return true;
+		if (current.levelID >= 1 && old.levelID >= 1 && !vars.level_unbeatable.Contains(current.levelID) && !vars.level_unbeatable.Contains(old.levelID))								// completing a non-Adventure level (legacy, failsafe for entering a new level too quickly)
+			if (((current.UI == 2 || current.UI == 5 || current.UI == 7) && old.UI == 3) || current.UI == 3 && old.UI == 3 && current.fadeout == -1 && old.fadeout > -1)
+				return true;
 		if (settings["4-5"] && old.UI != 1 && current.levelID == 0 && current.advLevel == 35 && current.streak > old.streak)															// passing a round on Level 4-5 (legacy)
 			return true;
 		if (settings["survival_flags"] && old.UI != 7 && current.levelID >= 1 && current.levelID <= 10 && current.streak > old.streak)													// passing a round on Normal / Hard Survivals (legacy)
@@ -329,8 +324,4 @@ reset{
 	for (int i = 51; i <= 59; ++i)
 		if (settings["puzzles_reset"] && current.UI != 7 && current.IGT < old.IGT && current.fadeout < 0 && (settings["puzzles_start" + i.ToString()] && current.levelID == i || settings["puzzles_start" + (i + 10).ToString()] && current.levelID == i + 10))		// restarting the first split in All Puzzles
 			return true;
-}
-
-isLoading{
-	return (current.uptime == old.uptime);	// load removal for when the game is closed/lagged, unaffected by pausing
 }
