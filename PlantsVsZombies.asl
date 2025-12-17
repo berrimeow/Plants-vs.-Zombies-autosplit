@@ -205,7 +205,6 @@ state("popcapgame1", "1.0.0.1051 / 1.2.0.1065 en"){
 init{
 	vars.level_seed_select = new List<int>(){1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 22, 28, 29, 31, 32, 34, 36, 37, 38, 39, 40, 41, 44, 45};													// Mini-games and Survival levels that have seed selection
 	vars.anyp_seed_select = new List<int>(){8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 31, 32, 33, 34, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48, 49};								// Any% levels that have seed selection
-	vars.anyp_shop = new List<int>(){25, 35, 42, };
 	vars.ngplus_seed_select = new List<int>(){1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 31, 32, 33, 34, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48, 49}; 			// NG+ levels that have seed selection
 	vars.level_endless = new List<int>(){11, 12, 13, 14, 15, 60, 70};																																			// endless levels
 	vars.level_unbeatable = new List<int>(){42, 43, 50, 71, 72};																																				// levels that can't be completed
