@@ -221,8 +221,10 @@ init{
 		version = "1.0.7.3556 international";
 	else if (modules.First().ModuleMemorySize >= 3800000)	// 3817472
 		version = "1.0.4.7924 international";
-	else													// 3751936
+	else if (modules.First().ModuleMemorySize >= 3700000)	// 3751936
 		version = "1.0.0.1051 / 1.2.0.1065 en";
+	else
+		version = "unpatched (won't work)";
 }
 
 startup{
@@ -278,7 +280,7 @@ split{
 		return true;
 	if (settings["cob_cannon"] && current.uptime > old.uptime && current.cobUpgrade == 1 && old.cobUpgrade == 0)																										// buying Cob Cannon (100%)
 		return true;
-	if (settings["spikerock"] && current.uptime > old.uptime && current.spikeUpgrade == 1 && old.spikeUpgrade == 0)																										// buying Cob Cannon (100%)
+	if (settings["spikerock"] && current.uptime > old.uptime && current.spikeUpgrade == 1 && old.spikeUpgrade == 0)																										// buying Spikerock (100%)
 		return true;
 	else if (settings["legacy"]){
 		if (current.advWins == 0 && current.advLevel == 45)																																// completing Level 5-4 in Any% (legacy, failsafe for entering Zen Garden too quickly)
@@ -288,7 +290,7 @@ split{
 			if (current.advLevel > old.advLevel)																																		// completing an Adventure level (legacy)
 				return true;
 		if (current.levelID >= 1 && old.levelID >= 1 && !vars.level_unbeatable.Contains(current.levelID) && !vars.level_unbeatable.Contains(old.levelID))								// completing a non-Adventure level (legacy, failsafe for entering a new level too quickly)
-			if (((current.UI == 2 || current.UI == 5 || current.UI == 7) && old.UI == 3) || current.UI == 3 && old.UI == 3 && current.fadeout == -1 && old.fadeout > -1)
+			if (((current.UI == 5 || current.UI == 7) && old.UI == 3) || current.UI == 3 && old.UI == 3 && current.fadeout == -1 && old.fadeout > -1)
 				return true;
 		if (settings["4-5"] && old.UI != 1 && current.levelID == 0 && current.advLevel == 35 && current.streak > old.streak)															// passing a round on Level 4-5 (legacy)
 			return true;
