@@ -211,12 +211,8 @@ init{
 
 	if (modules.First().ModuleMemorySize >= 4300000)	// 4317484
 		version = "GOTY (1.2.0.1096 en)";
-	else if (modules.First().ModuleMemorySize >= 4200000)	// 4280320
+	else if (modules.First().ModuleMemorySize >= 4000000)	// 4280320
 		version = "GOTY (1.2.0.1073 en)";
-	else if (modules.First().ModuleMemorySize >= 4000000)	// 4059136
-		version = "1.0.7.3467 ru";
-	else if (modules.First().ModuleMemorySize >= 3800000)	// 3817472
-		version = "1.0.4.7924 international";
 	else if (modules.First().ModuleMemorySize >= 3700000)	// 3751936
 		version = "1.0.0.1051 / 1.2.0.1065 en";
 	else
