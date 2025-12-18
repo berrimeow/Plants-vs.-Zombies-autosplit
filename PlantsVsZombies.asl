@@ -209,16 +209,12 @@ init{
 	vars.level_endless = new List<int>(){11, 12, 13, 14, 15, 60, 70};																																			// endless levels
 	vars.level_unbeatable = new List<int>(){42, 43, 50, 71, 72};																																				// levels that can't be completed
 
-	if (modules.First().ModuleMemorySize >= 4350000)		// 4358144
-		version = "GOTY (1.2.0.1093)";
-	else if (modules.First().ModuleMemorySize >= 4300000)	// 4317484
+	if (modules.First().ModuleMemorySize >= 4300000)	// 4317484
 		version = "GOTY (1.2.0.1096 en)";
 	else if (modules.First().ModuleMemorySize >= 4200000)	// 4280320
 		version = "GOTY (1.2.0.1073 en)";
 	else if (modules.First().ModuleMemorySize >= 4000000)	// 4059136
 		version = "1.0.7.3467 ru";
-	else if (modules.First().ModuleMemorySize >= 3820000)	// 3821568
-		version = "1.0.7.3556 international";
 	else if (modules.First().ModuleMemorySize >= 3800000)	// 3817472
 		version = "1.0.4.7924 international";
 	else if (modules.First().ModuleMemorySize >= 3700000)	// 3751936
