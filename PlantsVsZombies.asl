@@ -2,7 +2,7 @@
 // updated 2025-12-17
 // 1.0.7.3556 and GOTY 1.2.0.1093 unsupported but planned to be added
 
-state("popcapgame1", "GOTY (1.2.0.1096 en)"){
+state("popcapgame1", "GOTY (1.2.0.1096 en)"){		// state function priority from top to bottom matters for compatibility's sake
 	int uptime: 0x331c50, 0x320, 0x38;				// should consistently increase by 100 per second (Plants vs. Zombies's FPS) while the game is open
 	int UI: 0x331c50, 0x91c;						// game UI (1 = main menu, 2 = seed select, 3 = ingame, 5 = prize earned, 7 = level select)
 	int BGM: 0x331c50, 0x95c, 0x8;					// 1 to 12 (6 = Choose Your Seeds, 7 = Crazy Dave)
@@ -220,18 +220,20 @@ init{
 startup{
 	vars.name_puzzle = new List<string>{"Vasebreaker","To the Left","Third Vase","Chain Reaction","M is for Metal","Scary Potter","Hokey Pokey","Another Chain Reaction","Ace of Vase","Vasebreaker Endless","I, Zombie","I, Zombie Too","Can You Dig It?","Totally Nuts","Dead Zeppelin","Me Smash!","ZomBoogie","Three Hit Wonder","All your brainz r belong to us","I, Zombie Endless"};
 	settings.Add("puzzles_start", true, "All Puzzles (select a starting split)");
-	settings.Add("adventure_il", true, "Start on any Adventure level (IL practice)");
-	settings.Add("puzzles_reset", false, "Reset on restarting the first puzzle (All Puzzles)");
+	settings.Add("adventure_il", true, "Start on any Adventure level");
 	settings.Add("seed", false, "Split after seed selection");
 	settings.Add("flag", false, "Split every flag (standard levels)");
 	settings.Add("4-5", false, "Split every round on Level 4-5");
 	settings.Add("survival_flags", true, "Split every flag on Normal Survivals / 2 flags on Hard Survivals");
-	settings.Add("imitater", false, "Split on buying Imitater (100%)");
-	settings.Add("cob_cannon", false, "Split on buying Cob Cannon (100%)");
-	settings.Add("spikerock", false, "Split on buying Spikerock (100%)");
-	settings.Add("survival_endless_flags",true,"Split every 2 flags on Survival: Endless");
-	settings.Add("vasebreaker_endless_streak",true,"Split every round on Vasebreaker Endless");
-	settings.Add("i_zombie_endless_streak",true,"Split every round on I, Zombie Endless");
+	settings.Add("100p", true, "100%");
+	settings.Add("imitater", false, "Split on buying Imitater", "100p");
+	settings.Add("cob_cannon", false, "Split on buying Cob Cannon", "100p");
+	settings.Add("spikerock", false, "Split on buying Spikerock", "100p");
+	settings.Add("endless", true, "Endless levels");
+	settings.Add("survival_endless_flags", true, "Split every 2 flags on Survival: Endless", "endless");
+	settings.Add("vasebreaker_endless_streak", true, "Split every round on Vasebreaker Endless", "endless");
+	settings.Add("i_zombie_endless_streak", true, "Split every round on I, Zombie Endless", "endless");
+	settings.Add("puzzles_reset", false, "Reset on restarting the first puzzle (All Puzzles)");
 	settings.Add("legacy", false, "Legacy timing (splits after fadeouts, NG+ starts on entering 1-1)");	// offsets needed for accuracy: -6s for most categories, -8.8s for NG+, -5s for Endless levels
 	for (int i = 51; i <= 59; ++i)
 		settings.Add("puzzles_start"+i.ToString(),false,vars.name_puzzle[i-51], "puzzles_start");
