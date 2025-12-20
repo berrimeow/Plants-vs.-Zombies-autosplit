@@ -206,7 +206,7 @@ init{
 	vars.level_seed_select = new List<int>(){1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 22, 28, 29, 31, 32, 34, 36, 37, 38, 39, 40, 41, 44, 45};													// Mini-games and Survival levels that have seed selection
 	vars.anyp_seed_select = new List<int>(){8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 31, 32, 33, 34, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48, 49};								// Any% levels that have seed selection
 	vars.ngplus_seed_select = new List<int>(){1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 31, 32, 33, 34, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48, 49}; 			// NG+ levels that have seed selection
-	vars.level_endless = new List<int>(){11, 12, 13, 14, 15, 60, 70};																																			// endless levels
+	vars.level_endless = new List<int>(){11, 12, 13, 14, 15, 60, 70};																																			// Endless levels
 	vars.level_unbeatable = new List<int>(){42, 43, 50, 71, 72};																																				// levels that can't be completed
 
 	if (modules.First().ModuleMemorySize >= 4300000)	// 4317484
@@ -219,12 +219,17 @@ init{
 
 startup{
 	vars.name_puzzle = new List<string>{"Vasebreaker","To the Left","Third Vase","Chain Reaction","M is for Metal","Scary Potter","Hokey Pokey","Another Chain Reaction","Ace of Vase","Vasebreaker Endless","I, Zombie","I, Zombie Too","Can You Dig It?","Totally Nuts","Dead Zeppelin","Me Smash!","ZomBoogie","Three Hit Wonder","All your brainz r belong to us","I, Zombie Endless"};
-	settings.Add("puzzles_start", true, "All Puzzles (select a starting split)");
-	settings.Add("adventure_il", true, "Start on any Adventure level");
-	settings.Add("seed", false, "Split after seed selection");
-	settings.Add("flag", false, "Split every flag (standard levels)");
-	settings.Add("4-5", false, "Split every round on Level 4-5");
-	settings.Add("survival_flags", true, "Split every flag on Normal Survivals / 2 flags on Hard Survivals");
+	settings.Add("general", true, "General");
+	settings.Add("seed", false, "Split after seed selection", "general");
+	settings.Add("flag", false, "Split every flag (standard levels)", "general");
+	settings.Add("adventure", true, "Adventure");
+	settings.Add("adventure_il", true, "Start on any Adventure level", "adventure");
+	settings.Add("4-5", false, "Split every round on Level 4-5", "adventure");
+	settings.Add("puzzles", true, "All Puzzles");
+	settings.Add("puzzles_start", true, "First split", "puzzles");
+	settings.Add("puzzles_reset", true, "Reset on the first split", "puzzles");
+	settings.Add("survivals", true, "Survivals");
+	settings.Add("survival_flags", true, "Split every flag on Normal Survivals / 2 flags on Hard Survivals", "survivals");
 	settings.Add("100p", true, "100%");
 	settings.Add("imitater", false, "Split on buying Imitater", "100p");
 	settings.Add("cob_cannon", false, "Split on buying Cob Cannon", "100p");
@@ -233,7 +238,7 @@ startup{
 	settings.Add("survival_endless_flags", true, "Split every 2 flags on Survival: Endless", "endless");
 	settings.Add("vasebreaker_endless_streak", true, "Split every round on Vasebreaker Endless", "endless");
 	settings.Add("i_zombie_endless_streak", true, "Split every round on I, Zombie Endless", "endless");
-	settings.Add("puzzles_reset", false, "Reset on restarting the first puzzle (All Puzzles)");
+	settings.Add("endless_reset", true, "Reset on restarting", "endless");
 	settings.Add("legacy", false, "Legacy timing (splits after fadeouts, NG+ starts on entering 1-1)");	// offsets needed for accuracy: -6s for most categories, -8.8s for NG+, -5s for Endless levels
 	for (int i = 51; i <= 59; ++i)
 		settings.Add("puzzles_start"+i.ToString(),false,vars.name_puzzle[i-51], "puzzles_start");
@@ -245,7 +250,7 @@ start{
 	if (current.advWins == 0 && current.levelID == 0 && current.advLevel == 1 && current.sun == 50 && old.sun == 150)													// Any% and 100% start
 		return true;
 	else if (current.IGT >= 1 && current.IGT <= 25){
-		if (settings["adventure_il"] && current.levelID == 0 && current.advLevel > 1)															// Any%, 100%, and NG+ (ILs practice)
+		if (settings["adventure_il"] && current.levelID == 0 && current.advLevel > 1)																					// Adventure (ILs practice)
 			return true;
 		if ((current.levelID >= 1 && current.levelID <= 49 || vars.level_endless.Contains(current.levelID)) && !vars.level_unbeatable.Contains(current.levelID))		// All Mini-games, All Survivals, Endless levels
 			return true;
@@ -275,12 +280,8 @@ split{
 	if (settings["spikerock"] && current.uptime > old.uptime && current.spikeUpgrade == 1 && old.spikeUpgrade == 0)																										// buying Spikerock (100%)
 		return true;
 	else if (settings["legacy"]){
-		if (current.advWins == 0 && current.advLevel == 45)																																// completing Level 5-4 in Any% (legacy, failsafe for entering Zen Garden too quickly)
-			if (current.UI == 5 && old.UI == 3 || current.UI == 3 && old.UI == 3 && current.levelID == 43 && old.levelID == 0) 
-				return true;
-		if (current.advWins != 0 || current.advLevel != 45)
-			if (current.advLevel > old.advLevel)																																		// completing an Adventure level (legacy)
-				return true;
+		if (current.advLevel != old.advLevel)																																			// completing an Adventure level (legacy)
+			return true;
 		if (current.levelID >= 1 && old.levelID >= 1 && !vars.level_unbeatable.Contains(current.levelID) && !vars.level_unbeatable.Contains(old.levelID))								// completing a non-Adventure level (legacy, failsafe for entering a new level too quickly)
 			if (((current.UI == 5 || current.UI == 7) && old.UI == 3) || current.UI == 3 && old.UI == 3 && current.fadeout == -1 && old.fadeout > -1)
 				return true;
@@ -317,4 +318,6 @@ reset{
 	for (int i = 51; i <= 59; ++i)
 		if (settings["puzzles_reset"] && current.UI != 7 && current.IGT < old.IGT && current.fadeout < 0 && (settings["puzzles_start" + i.ToString()] && current.levelID == i || settings["puzzles_start" + (i + 10).ToString()] && current.levelID == i + 10))		// restarting the first split in All Puzzles
 			return true;
+	if (settings["endless_reset"] && current.UI != 7 && current.IGT < old.IGT && current.fadeout < 0 && vars.level_endless.Contains(current.levelID))	// restarting Endless levels
+		return true;
 }
