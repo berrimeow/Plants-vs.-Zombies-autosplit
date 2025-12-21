@@ -280,10 +280,10 @@ split{
 	if (settings["spikerock"] && current.uptime > old.uptime && current.spikeUpgrade == 1 && old.spikeUpgrade == 0)																										// buying Spikerock (100%)
 		return true;
 	else if (settings["legacy"]){
-		if (current.advLevel != old.advLevel)																																			// completing an Adventure level (legacy)
+		if (old.BGM == -1 && current.advLevel != old.advLevel)																															// completing an Adventure level (legacy)
 			return true;
-		if (current.levelID >= 1 && old.levelID >= 1 && !vars.level_unbeatable.Contains(current.levelID) && !vars.level_unbeatable.Contains(old.levelID))								// completing a non-Adventure level (legacy, failsafe for entering a new level too quickly)
-			if (((current.UI == 5 || current.UI == 7) && old.UI == 3) || current.UI == 3 && old.UI == 3 && current.fadeout == -1 && old.fadeout > -1)
+		if (current.levelID >= 1 && !vars.level_unbeatable.Contains(current.levelID))																									// completing a non-Adventure level
+			if (old.BGM == -1 && (current.UI == 5 || current.UI == 7) && old.UI == 3)
 				return true;
 		if (settings["4-5"] && old.UI != 1 && current.levelID == 0 && current.advLevel == 35 && current.streak > old.streak)															// passing a round on Level 4-5 (legacy)
 			return true;
