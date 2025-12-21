@@ -1,5 +1,5 @@
 // Plants vs. Zombies (PC) autosplitter by ymblcza and berrimeow
-// updated 2025-12-17
+// updated 2025-12-21
 // 1.0.7.3556 and GOTY 1.2.0.1093 unsupported but planned to be added
 
 state("popcapgame1", "GOTY (1.2.0.1096 en)"){		// state function priority from top to bottom matters for compatibility's sake
@@ -224,10 +224,13 @@ startup{
 	settings.Add("flag", false, "Split every flag (standard levels)", "general");
 	settings.Add("adventure", true, "Adventure");
 	settings.Add("adventure_il", true, "Start on any Adventure level", "adventure");
-	settings.Add("4-5", false, "Split every round on Level 4-5", "adventure");
+	settings.Add("4-5", false, "Split every round on 4-5", "adventure");
+	settings.Add("adventure_reset", true, "Reset on restarting 1-1", "adventure");
+	settings.Add("minigames", true, "All Mini-games");
+	settings.Add("minigames_reset", true, "Reset on restarting Slot Machine", "minigames");
 	settings.Add("puzzles", true, "All Puzzles");
 	settings.Add("puzzles_start", true, "First split", "puzzles");
-	settings.Add("puzzles_reset", true, "Reset on the first split", "puzzles");
+	settings.Add("puzzles_reset", true, "Reset on restarting the first split", "puzzles");
 	settings.Add("survivals", true, "Survivals");
 	settings.Add("survival_flags", true, "Split every flag on Normal Survivals / 2 flags on Hard Survivals", "survivals");
 	settings.Add("100p", true, "100%");
@@ -315,9 +318,13 @@ split{
 }
 
 reset{
+	if (settings["adventure_reset"] && current.UI != 7 && current.IGT < old.IGT && current.fadeout < 0 && current.levelID == 0 && current.advLevel == 1)	// restarting Level 1-1
+		return true;
+	if (settings["minigames_reset"] && current.UI != 7 && current.IGT < old.IGT && current.fadeout < 0 && current.levelID == 18)							// restarting Slot Machine
+		return true;
 	for (int i = 51; i <= 59; ++i)
 		if (settings["puzzles_reset"] && current.UI != 7 && current.IGT < old.IGT && current.fadeout < 0 && (settings["puzzles_start" + i.ToString()] && current.levelID == i || settings["puzzles_start" + (i + 10).ToString()] && current.levelID == i + 10))		// restarting the first split in All Puzzles
 			return true;
-	if (settings["endless_reset"] && current.UI != 7 && current.IGT < old.IGT && current.fadeout < 0 && vars.level_endless.Contains(current.levelID))	// restarting Endless levels
+	if (settings["endless_reset"] && current.UI != 7 && current.IGT < old.IGT && current.fadeout < 0 && vars.level_endless.Contains(current.levelID))		// restarting Endless levels
 		return true;
 }
