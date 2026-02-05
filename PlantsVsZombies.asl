@@ -227,6 +227,7 @@ startup{
 	settings.Add("4-5", false, "Split every round on 4-5", "adventure");
 	settings.Add("adventure_reset", true, "Reset on restarting 1-1", "adventure");
 	settings.Add("minigames", true, "All Mini-games");
+	settings.Add("last_stand", true, "Split every round on Last Stand", "minigames");
 	settings.Add("minigames_reset", true, "Reset on restarting Slot Machine", "minigames");
 	settings.Add("puzzles", true, "All Puzzles");
 	settings.Add("puzzles_start", true, "First split", "puzzles");
@@ -272,9 +273,11 @@ start{
 }
 
 split{
-	if (settings["seed"] && (current.UI == 3 && old.UI == 2 && old.IGTnoSeedSelect == 0 && current.IGTnoSeedSelect > 0) && (vars.level_seed_select.Contains(current.levelID) || (current.advWins == 0 && current.levelID == 0 && vars.anyp_seed_select.Contains(current.advLevel)) || (current.advWins >= 1 && current.levelID == 0 && vars.ngplus_seed_select.Contains(current.advLevel)))) // starting a level after seed selection
+	if (settings["seed"] && (current.UI == 3 && old.UI == 2 && current.IGTnoSeedSelect > old.IGTnoSeedSelect) && (vars.level_seed_select.Contains(current.levelID) || (current.advWins == 0 && current.levelID == 0 && vars.anyp_seed_select.Contains(current.advLevel)) || (current.advWins >= 1 && current.levelID == 0 && vars.ngplus_seed_select.Contains(current.advLevel)))) // starting a level after seed selection
 		return true;
 	if (settings["flag"] && (current.uptime > old.uptime && current.UI == 3 && (current.levelID == 0 || current.levelID >= 16 && current.levelID <= 49) && current.wave % 10 == 0 && old.wave % 10 != 0)) 				// every flag (standard levels)
+		return true;
+	if (settings["last_stand"] && (current.uptime > old.uptime && current.UI == 3 && current.levelID == 31 && current.waveAutoscroll == 1800 && old.waveAutoscroll == 750)) 															// every round (Last Stand)
 		return true;
 	if (settings["imitater"] && current.uptime > old.uptime && current.imiUpgrade == 1 && old.imiUpgrade == 0)																											// buying Imitater (100%)
 		return true;
