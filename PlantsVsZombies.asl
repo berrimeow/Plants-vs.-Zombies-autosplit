@@ -1,5 +1,5 @@
 // Plants vs. Zombies (PC) autosplitter by ymblcza and berrimeow
-// updated 2025-12-21
+// updated 2026-3-19
 // 1.0.7.3556 and GOTY 1.2.0.1093 unsupported but planned to be added
 
 state("popcapgame1", "GOTY (1.2.0.1096 en)"){		// state function priority from top to bottom matters for compatibility's sake
@@ -13,7 +13,6 @@ state("popcapgame1", "GOTY (1.2.0.1096 en)"){		// state function priority from t
 	int IGTnoSeedSelect: 0x331c50, 0x868, 0x5580;	// +100 per second while ingame, persists on leaving the level
 	int sun: 0x331c50, 0x868, 0x5578;
 	int wave: 0x331c50, 0x868, 0x5594;
-	int waveAutoscroll: 0x331c50, 0x868, 0x55b4;
 	int fadeout: 0x331c50, 0x868, 0x5618;			// activated when grabbing a prize, starts around 600 and decreases by 100 per second
 	int streak: 0x331c50, 0x868, 0x178, 0x6c;		// used on Level 4-5, Last Stand, and the Endless levels
 	int streakTimer: 0x331c50, 0x868, 0x561c;		// activated when passing a round on a level with streaks, starts around 500 and decreases by 100 per second
@@ -33,7 +32,6 @@ state("popcapgame1", "1.0.0.1051 / 1.2.0.1065 en"){
 	int IGTnoSeedSelect: 0x2a9ec0, 0x768, 0x5568;
 	int sun: 0x2a9ec0, 0x768, 0x5560;
 	int wave: 0x2a9ec0, 0x768, 0x557c;
-	int waveAutoscroll: 0x2a9ec0, 0x768, 0x559c;
 	int fadeout: 0x2a9ec0, 0x768, 0x5600;
 	int streak: 0x2a9ec0, 0x768, 0x160, 0x6c;
 	int streakTimer: 0x2a9ec0, 0x768, 0x5604;
@@ -53,7 +51,6 @@ state("popcapgame1", "GOTY (1.2.0.1073 en)"){
 	int IGTnoSeedSelect: 0x329670, 0x868, 0x5580;
 	int sun: 0x329670, 0x868, 0x5578;
 	int wave: 0x329670, 0x868, 0x5594;
-	int waveAutoscroll: 0x329670, 0x868, 0x55b4;
 	int fadeout: 0x329670, 0x868, 0x5618;
 	int streak: 0x329670, 0x868, 0x178, 0x6c;
 	int streakTimer: 0x329670, 0x868, 0x561c;
@@ -73,7 +70,6 @@ state("PlantsVsZombies", "1.0.0.1051 / 1.2.0.1065 en"){
 	int IGTnoSeedSelect: 0x2a9ec0, 0x768, 0x5568;
 	int sun: 0x2a9ec0, 0x768, 0x5560;
 	int wave: 0x2a9ec0, 0x768, 0x557c;
-	int waveAutoscroll: 0x2a9ec0, 0x768, 0x559c;
 	int fadeout: 0x2a9ec0, 0x768, 0x5600;
 	int streak: 0x2a9ec0, 0x768, 0x160, 0x6c;
 	int streakTimer: 0x2a9ec0, 0x768, 0x5604;
@@ -93,7 +89,6 @@ state("PlantsVsZombies", "GOTY (1.2.0.1073 en)"){
 	int IGTnoSeedSelect: 0x329670, 0x868, 0x5580;
 	int sun: 0x329670, 0x868, 0x5578;
 	int wave: 0x329670, 0x868, 0x5594;
-	int waveAutoscroll: 0x329670, 0x868, 0x55b4;
 	int fadeout: 0x329670, 0x868, 0x5618;
 	int streak: 0x329670, 0x868, 0x178, 0x6c;
 	int streakTimer: 0x329670, 0x868, 0x561c;
@@ -113,7 +108,6 @@ state("PlantsVsZombies", "GOTY (1.2.0.1096 en)"){
 	int IGTnoSeedSelect: 0x331c50, 0x868, 0x5580;
 	int sun: 0x331c50, 0x868, 0x5578;
 	int wave: 0x331c50, 0x868, 0x5594;
-	int waveAutoscroll: 0x331c50, 0x868, 0x55b4;
 	int fadeout: 0x331c50, 0x868, 0x5618;
 	int streak: 0x331c50, 0x868, 0x178, 0x6c;
 	int streakTimer: 0x331c50, 0x868, 0x561c;
@@ -133,7 +127,6 @@ state("popcapgame1", "1.0.7.3467 ru"){
 	int IGTnoSeedSelect: 0x2b9ff0, 0x768, 0x5568;
 	int sun: 0x2b9ff0, 0x768, 0x5560;
 	int wave: 0x2b9ff0, 0x768, 0x557c;
-	int waveAutoscroll: 0x2b9ff0, 0x768, 0x559c;
 	int fadeout: 0x2b9ff0, 0x768, 0x5600;
 	int streak: 0x2b9ff0, 0x768, 0x160, 0x6c;
 	int streakTimer: 0x2b9ff0, 0x768, 0x5604;
@@ -153,7 +146,6 @@ state("popcapgame1", "1.0.4.7924 international"){
 	int IGTnoSeedSelect: 0x2ba058, 0x768, 0x5568;
 	int sun: 0x2ba058, 0x768, 0x5560;
 	int wave: 0x2ba058, 0x768, 0x557c;
-	int waveAutoscroll: 0x2ba058, 0x768, 0x559c;
 	int fadeout: 0x2ba058, 0x768, 0x5600;
 	int streak: 0x2ba058, 0x768, 0x160, 0x6c;
 	int streakTimer: 0x2ba058, 0x768, 0x5604;
@@ -173,7 +165,6 @@ state("PlantsVsZombies", "1.0.7.3467 ru"){
 	int IGTnoSeedSelect: 0x2b9ff0, 0x768, 0x5568;
 	int sun: 0x2b9ff0, 0x768, 0x5560;
 	int wave: 0x2b9ff0, 0x768, 0x557c;
-	int waveAutoscroll: 0x2b9ff0, 0x768, 0x559c;
 	int fadeout: 0x2b9ff0, 0x768, 0x5600;
 	int streak: 0x2b9ff0, 0x768, 0x160, 0x6c;
 	int streakTimer: 0x2b9ff0, 0x768, 0x5604;
@@ -193,7 +184,6 @@ state("PlantsVsZombies", "1.0.4.7924 international"){
 	int IGTnoSeedSelect: 0x2ba058, 0x768, 0x5568;
 	int sun: 0x2ba058, 0x768, 0x5560;
 	int wave: 0x2ba058, 0x768, 0x557c;
-	int waveAutoscroll: 0x2ba058, 0x768, 0x559c;
 	int fadeout: 0x2ba058, 0x768, 0x5600;
 	int streak: 0x2ba058, 0x768, 0x160, 0x6c;
 	int streakTimer: 0x2ba058, 0x768, 0x5604;
@@ -275,9 +265,9 @@ start{
 split{
 	if (settings["seed"] && (current.UI == 3 && old.UI == 2 && current.IGTnoSeedSelect > old.IGTnoSeedSelect) && (vars.level_seed_select.Contains(current.levelID) || (current.advWins == 0 && current.levelID == 0 && vars.anyp_seed_select.Contains(current.advLevel)) || (current.advWins >= 1 && current.levelID == 0 && vars.ngplus_seed_select.Contains(current.advLevel)))) // starting a level after seed selection
 		return true;
-	if (settings["flag"] && (current.uptime > old.uptime && current.UI == 3 && (current.levelID == 0 || current.levelID >= 16 && current.levelID <= 49) && current.wave % 10 == 0 && old.wave % 10 != 0)) 				// every flag (standard levels)
+	if (settings["flag"] && (current.uptime > old.uptime && current.UI == 3 && current.levelID != 31 && (current.levelID == 0 || current.levelID >= 16 && current.levelID <= 49) && current.wave % 10 == 0 && old.wave % 10 != 0)) 				// every flag (standard levels)
 		return true;
-	if (settings["last_stand"] && (current.uptime > old.uptime && current.UI == 3 && current.levelID == 31 && current.waveAutoscroll == 1800 && old.waveAutoscroll == 750)) 															// every round (Last Stand)
+	if (settings["last_stand"] && (current.uptime > old.uptime && current.UI == 3 && current.levelID == 31 && current.streak > old.streak)) 															// every round (Last Stand)
 		return true;
 	if (settings["imitater"] && current.uptime > old.uptime && current.imiUpgrade == 1 && old.imiUpgrade == 0)																											// buying Imitater (100%)
 		return true;
