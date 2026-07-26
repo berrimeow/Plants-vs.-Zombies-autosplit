@@ -1,5 +1,5 @@
 // Plants vs. Zombies (PC) autosplitter by ymblcza and berrimeow
-// updated 2026-3-19
+// updated 2026-7-25
 // 1.0.7.3556 and GOTY 1.2.0.1093 unsupported but planned to be added
 
 state("popcapgame1", "GOTY (1.2.0.1096 en)"){		// state function priority from top to bottom matters for compatibility's sake
@@ -192,6 +192,23 @@ state("PlantsVsZombies", "1.0.4.7924 international"){
 	int spikeUpgrade: 0x2ba058, 0x82c, 0x1d8;
 }
 
+state("SetSeedV5.1", "set seed v5.1"){
+	int uptime: 0x41de74, 0x44c;
+	int UI: 0x41de74, 0x750;
+	int BGM: 0x41de74, 0x790, 0x8;
+	int levelID: 0x41de74, 0x74c;
+	int advLevel: 0x41de74, 0x780, 0x20;
+	int advWins: 0x41de74, 0x780, 0x28;
+	int IGT: 0x41de74, 0x6d0, 0x5560;
+	int IGTnoSeedSelect: 0x41de74, 0x6d0, 0x555c;
+	int sun: 0x41de74, 0x6d0, 0x5554;
+	int wave: 0x41de74, 0x6d0, 0x5570;
+	int fadeout: 0x41de74, 0x6d0, 0x55f4;
+	int imiUpgrade: 0x41de74, 0x780, 0x1dc;
+	int cobUpgrade: 0x41de74, 0x780, 0x1d8;
+	int spikeUpgrade: 0x41de74, 0x780, 0x1d4;
+}
+
 init{
 	vars.level_seed_select = new List<int>(){1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 22, 28, 29, 31, 32, 34, 36, 37, 38, 39, 40, 41, 44, 45};													// Mini-games and Survival levels that have seed selection
 	vars.anyp_seed_select = new List<int>(){8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 31, 32, 33, 34, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 48, 49};								// Any% levels that have seed selection
@@ -199,7 +216,9 @@ init{
 	vars.level_endless = new List<int>(){11, 12, 13, 14, 15, 60, 70};																																			// Endless levels
 	vars.level_unbeatable = new List<int>(){42, 43, 50, 71, 72};																																				// levels that can't be completed
 
-	if (modules.First().ModuleMemorySize >= 4300000)	// 4317484
+	if (modules.First().ModuleMemorySize >= 5100000)
+		version = "set seed v5.1";
+	else if (modules.First().ModuleMemorySize >= 4300000)	// 4317484
 		version = "GOTY (1.2.0.1096 en)";
 	else if (modules.First().ModuleMemorySize >= 4000000)	// 4280320
 		version = "GOTY (1.2.0.1073 en)";
@@ -233,7 +252,8 @@ startup{
 	settings.Add("vasebreaker_endless_streak", true, "Split every round on Vasebreaker Endless", "endless");
 	settings.Add("i_zombie_endless_streak", true, "Split every round on I, Zombie Endless", "endless");
 	settings.Add("endless_reset", true, "Reset on restarting", "endless");
-	settings.Add("legacy", false, "Legacy timing (splits after fadeouts, NG+ starts on entering 1-1)");	// offsets needed for accuracy: -6s for most categories, -8.8s for NG+, -5s for Endless levels
+	settings.Add("legacy", false, "Legacy timing");
+	settings.SetToolTip("legacy", "Starting offsets needed for accuracy: -8.8s for NG+, -5s for Endless levels, -6s for other categories");
 	for (int i = 51; i <= 59; ++i)
 		settings.Add("puzzles_start"+i.ToString(),false,vars.name_puzzle[i-51], "puzzles_start");
 	for (int i = 61; i <= 69; ++i)
